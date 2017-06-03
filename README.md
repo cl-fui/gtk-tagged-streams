@@ -61,4 +61,4 @@ Other stream classes will probably be added as needed.  Please open an issue if 
 Markdown | Less 
 --- | --- 
 `:tag` | a gtk-text-tag valid for this buffer.  If the tag is not active at the position indicated by the :position parameter, an :eof condition will exist at the next read. 
-1 | 2 
+`:buffer` | a gts:text-buffer; 
