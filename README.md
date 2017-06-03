@@ -58,7 +58,7 @@ Once open, you may use :start or :end file-position to wind to the beginning or 
 
 Other stream classes will probably be added as needed.  Please open an issue if you have a good idea for one.
 
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
+Markdown | Less 
+--- | --- 
+`:tag` | a gtk-text-tag valid for this buffer.  If the tag is not active at the position indicated by the :position parameter, an :eof condition will exist at the next read. 
+1 | 2 
