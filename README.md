@@ -48,11 +48,11 @@ Parameter | Notes
 `:tag` | a gtk-text-tag valid for this buffer.  If the tag is not active at the position indicated by the :position parameter, an :eof condition will exist at the next read. 
 `:buffer` | a gts:text-buffer; 
 `:position` | one of:
- | - an integer offset (0 is start, -1 is end);
- | - an iterator;
- | - a mark;
- | - a string naming a mark;
- | - nil for the cursor position. 
+| | - an integer offset (0 is start, -1 is end);
+| | - an iterator;
+| | - a mark;
+| | - a string naming a mark;
+| | - nil for the cursor position. 
 
 Once open, you may use :start or :end file-position to wind to the beginning or end of the run.
 
