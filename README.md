@@ -44,26 +44,35 @@ The tag can be any tag valid for this buffer.  You may nest these as needed.
 
 Other streams may be opened on the buffer.  They are described below.
 
+## Generalized Positions
 
+When opening streams, the initial position can be expressed in a variety of ways.  For convenience, all streams on text-buffer are opened with a `:position` argument that may be one of:
 
-## TAG-INPUT-STREAM
+- an integer offset (0 is start, -1 is end);
+- an iterator;
+- a mark;
+- a string naming a mark;
+- nil for the caret position. 
+
+## MARK-OUT-STREAM
+
+The built-in caret stream of a text-buffer always outputs at the current caret position, adjusting it after output.  For truly random-position output, use MARK-OUT-STREAM.  It maintains its own mark for tracking output position.
+
+`(make-instance 'mark-out-stream :buffer buffer :position genpos)`
+
+## TAG-IN-STREAM
 
 This stream allows you to treat a tagged run of text as an input stream. 
 
-`(make-instance 'tag-input-stream :buffer buffer :tag tag :position pos)`
+`(make-instance 'tag-in-stream :buffer buffer :tag tag :position genpos)`
 
-Parameter | Notes 
---- | --- 
-`:tag` | a gtk-text-tag valid for this buffer.  If the tag is not active at the position indicated by the :position parameter, an :eof condition will exist at the next read. 
-`:buffer` | a gts:text-buffer; 
-`:position` | one of:
-| | - an integer offset (0 is start, -1 is end);
-| | - an iterator;
-| | - a mark;
-| | - a string naming a mark;
-| | - nil for the caret position. 
+If the tag is not active at the position indicated by the :position parameter, an :eof condition will exist at the next read. 
 
 Once open, you may use :start or :end file-position to wind to the beginning or end of the run.
+
+## STATUS
+
+Early working code.
 
 Other stream classes will probably be added as needed.  Please open an issue if you have a good idea for one.
 

@@ -58,11 +58,11 @@
 		(mvb (x y) (gtv-window-to-buffer-coords tv :widget x y )
 		     (let* ((iter (gtv-get-iter-at-location tv x y))
 			    (tag (car (last (gti-get-tags iter))))) ;
-		       (setf *t* tag)
+		      ;; (setf *t* tag)
 		       (when tag
 			 (let ((input
 				(make-instance
-				 'tag-input-stream
+				 'tag-in-stream
 				 :tag tag
 				 :buffer buffer
 				 :position iter)))

@@ -19,6 +19,7 @@
 	       (:file "gtk-assets/tb-output-mixin")
 	       (:file "gtk-assets/tb")
 	       (:file "gtk-assets/tag")
-	       (:file "gtk-assets/tag-input-stream")
+	       (:file "gtk-assets/tag-in-stream")
+	       (:file "gtk-assets/mark-out-stream")
 
-	       (:file "test")))
+	       (:file "demo")))

@@ -9,14 +9,13 @@
   "create an iter at generalized position"
    (typecase position
      (integer
-      (gtb-get-iter-at-offset buffer (gtb-cursor-position buffer)))
+      (gtb-get-iter-at-offset buffer position))
      (gtk-text-iter
       (gti-copy position))
      (gtk-text-mark
-      (gtb-get-iter-at-mark buffer  position))
+      (gtb-get-iter-at-mark buffer position))
      (string
-      (gtb-get-iter-at-mark buffer
-			    (gtb-get-mark buffer position)))
+      (gtb-get-iter-at-mark buffer (gtb-get-mark buffer position)))
      (null
       (gtb-get-iter-at-mark buffer (gtb-get-insert buffer))))
    )
