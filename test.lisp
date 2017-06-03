@@ -2,11 +2,11 @@
 (defparameter *buffer* nil)
 (defparameter *view* nil)
 
-(defparameter *t* nil)
-(defparameter *s* nil)
+(defparameter *tHead* nil)
+
 
 ;;━┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-(defun a0 ()
+(defun demo ()
   (let ((so *standard-output*))
     
     (within-main-loop
@@ -42,7 +42,8 @@
 	(gtk-container-add scrolled view)
 	(gtk-container-add window scrolled)
 	(setf *buffer* buffer
-	      *view* view)
+	      *view* view
+	      *tHead* tHead)
 	
 	(g-signal-connect window "destroy"
 			  (lambda (widget)
@@ -66,8 +67,9 @@
 				 :buffer buffer
 				 :position iter)))
 			   (file-position input :start)
+			   (file-position buffer :end);unclick to end of buffer
 			   (loop for c = (read-char input nil nil)
-			      while c do (write-char c))
+			      while c do (write-char c ))
 			   (close input) ))))
 		nil; let gtk handle the click
 	  )))
