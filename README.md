@@ -33,13 +33,21 @@ Use gts:text-buffer instead of gtk-text-buffer.  Immediately upon creation, it i
 
 For tagged output, wrap your outputting code like this:
 ```
-(with-tag buffer tag (format buffer "hello"))
+(with-tag *buffer* tag (format *buffer* "hello"))
 ```
 The tag can be any tag valid for this buffer.  You may nest with-tag as needed.
 
 ## TAG-INPUT-STREAM
 
-This stream allows you to treat a tagged run of text as an input stream.  The :buffer parameter must be a gts:text-buffer; :position may be an integer offset, an iterator, a mark, a string naming a mark, or nil for the cursor position.  Once open, you may use :start or :end file-position to wind to the beginning or end of the run.
+This stream allows you to treat a tagged run of text as an input stream.  The :buffer parameter must be a gts:text-buffer; :position may be one of:
+
+- an integer offset (0 is start, -1 is end);
+- an iterator;
+- a mark;
+- a string naming a mark;
+- nil for the cursor position.
+
+Once open, you may use :start or :end file-position to wind to the beginning or end of the run.
 
 Other stream classes will probably be added as needed.  Please open an issue if you have a good idea for one.
 
