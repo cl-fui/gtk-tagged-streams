@@ -28,19 +28,7 @@
     (unless (and buffer tag)
       (error "TAG-INPUT-STREAM requires a :buffer and a :tag"))
     ;; Create iter; set mark at current cursor position
-    (setf iter
-	  (typecase position
-	    (integer
-	     (gtb-get-iter-at-offset buffer (gtb-cursor-position buffer)))
-	    (gtk-text-iter
-	     (gti-copy position))
-	    (gtk-text-mark
-	     (gtb-get-iter-at-mark buffer  position))
-	    (string
-	     (gtb-get-iter-at-mark buffer
-				   (gtb-get-mark buffer position)))
-	    (null
-	     (gtb-get-iter-at-mark buffer (gtb-get-insert buffer)))) 
+    (setf iter (new-iter-at-position buffer position)
 	  mark   (gtb-create-mark buffer (cffi:null-pointer) iter))))
 
 ;;===========================================================================

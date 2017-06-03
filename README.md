@@ -6,8 +6,7 @@ It further lets you open tagged texts as streams, for reasonably easy input.
 
 You may be interested in this library if 
 * you need something better looking than a terminal;
-* you don't want (or can't) expose your users to Emacs;
-* you want to build a more sophisticated textbuffer
+* you need control of type and color in your output;
 
 This library uses (and is an extension of) the [ubiquitous cl-cffi-gtk](https://github.com/crategus/cl-cffi-gtk).
 
@@ -30,19 +29,28 @@ While the demo is open, you can output to the screen using something like `(form
 
 To use GTK-TAGGED-STREAMS, clone it into your Lisp directory, or use Quicklisp (soon).
 
-Use gts:text-buffer instead of gtk-text-buffer.  Immediately upon creation, it is a stream that outputs text to the cursor position.
+Use gts:text-buffer instead of gtk-text-buffer.  The buffer is also a caret output stream; any output will be inserted at the caret.
 
 For tagged output, wrap your outputting code like this:
 ```
 (with-tag *buffer* tag (format *buffer* "hello"))
+
+(without-tag *buffer* tag ...)
 ```
-The tag can be any tag valid for this buffer.  You may nest with-tag as needed.
+
+The latter removes the specified tag from output (a very useful feature!)
+
+The tag can be any tag valid for this buffer.  You may nest these as needed.
+
+Other streams may be opened on the buffer.  They are described below.
+
+
 
 ## TAG-INPUT-STREAM
 
-`(make-instance 'tag-input-stream :buffer buffer :tag tag :position pos)`
-
 This stream allows you to treat a tagged run of text as an input stream. 
+
+`(make-instance 'tag-input-stream :buffer buffer :tag tag :position pos)`
 
 Parameter | Notes 
 --- | --- 
@@ -53,7 +61,7 @@ Parameter | Notes
 | | - an iterator;
 | | - a mark;
 | | - a string naming a mark;
-| | - nil for the cursor position. 
+| | - nil for the caret position. 
 
 Once open, you may use :start or :end file-position to wind to the beginning or end of the run.
 

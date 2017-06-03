@@ -41,7 +41,7 @@
 ;;
 (defun tb-apply-tag (tb tag start end)
   "place a tag at characters (start,end]"
-  (format t "START END ~A ~A~&" start end)
+;;  (format t "START END ~A ~A~&" start end)
   (tb-iters-to-offsets tb start end)
   (with-slots (iter0 iter1) tb
   ;;  (format t "APPLYING ~A ~A~&" (gti-offset iter0) (gti-offset iter1))

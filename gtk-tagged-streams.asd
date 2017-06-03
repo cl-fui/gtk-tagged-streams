@@ -15,6 +15,7 @@
 
 	       (:file "utils")
 
+	       (:file "gtk-assets/generalized-position")
 	       (:file "gtk-assets/tb-output-mixin")
 	       (:file "gtk-assets/tb")
 	       (:file "gtk-assets/tag")
