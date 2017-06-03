@@ -16,7 +16,10 @@ This library uses (and is an extension of) the [ubiquitous cl-cffi-gtk](https://
 
 ![screenshot](./Screenshot.png?raw=true) 
 
-
+```
+(ql:quickload :gtk-tagged-streams)(in-package :gts)
+(demo)
+```
 Mouse-clicks will create an input stream on the run of text underneath the click, and output it to your *standard-output*.
 
 While the demo is open, you can output to the screen using something like `(format *buffer* "hello")` from the REPL.  Or if you want to be fancy, try `(with-tag *buffer* *tHead* (format *buffer* "~&Elephant~&"))`
