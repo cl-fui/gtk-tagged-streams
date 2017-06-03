@@ -56,7 +56,7 @@ When opening streams, the initial position can be expressed in a variety of ways
 
 ## MARK-OUT-STREAM
 
-The built-in caret stream of a text-buffer always outputs at the current caret position, adjusting it after output.  For truly random-position output, use MARK-OUT-STREAM.  It maintains its own mark for tracking output position.
+The built-in caret stream of a text-buffer always outputs at the current caret position, adjusting it after output.  For truly random-position output, use MARK-OUT-STREAM.  It maintains its own mark for tracking output position.  Any number of these may be opened of a text-buffer; don't forget to close!
 
 `(make-instance 'mark-out-stream :buffer buffer :position genpos)`
 
