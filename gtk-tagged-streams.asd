@@ -21,7 +21,8 @@
 	       (:file "gtk-assets/tb")
 	       (:file "gtk-assets/tag")
 	       (:file "gtk-assets/tag-in-stream")
+	       (:file "gtk-assets/tag-only-in-stream")
 	       (:file "gtk-assets/mark-out-stream")
-	       (:file "gtk-assets/tv")
 
-	       (:file "demo")))
+	       (:file "demo")
+	       ))

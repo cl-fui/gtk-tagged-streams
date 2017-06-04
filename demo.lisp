@@ -39,10 +39,7 @@
 				       :weight 800))
 	     (tLink (make-instance 'tag :buffer buffer
 				   :foreground-rgba (gdk-rgba-parse "#0645AD")))
-	      (tKey (make-instance 'tag :buffer buffer
-				   :foreground-rgba (gdk-rgba-parse "#FF0000")))
-	     (view (make-instance 'tv :buffer buffer
-				  :usertag tKey
+	     (view (make-instance 'gtk-text-view :buffer buffer
 				  :wrap-mode :word)))
 	
 	(gtk-container-add scrolled view)

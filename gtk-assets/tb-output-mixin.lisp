@@ -37,11 +37,11 @@
 
 (defmethod (setf trivial-gray-streams:stream-file-position)
     (newval (stream tb-output-mixin))
-  (with-slots (iter0) stream
+  (with-slots (iter0 mcursor) stream
     (%gtb-get-iter-at-offset stream iter0 (case newval
 					    (:start 0)
 					    (:end -1)
 					    (t newval)))
-    (gtb-move-mark stream "insert" iter0))
+    (%gtb-move-mark stream mcursor iter0))
   t)
 

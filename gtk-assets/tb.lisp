@@ -3,8 +3,7 @@
 ;;==============================================================================
 ;;
 (defclass tb (gtk-text-buffer tb-output-mixin)
-  ((usertag  :accessor usertag :initform nil); user input tagged with this
-   (iter0    :accessor iter0 )	;a very temporary iterator...
+  ((iter0    :accessor iter0 )	;a very temporary iterator...
    (iter1    :accessor iter1 )	;a very temporary iterator...
    (mcursor   :accessor mcursor)) ;a minor optimization
   (:metaclass gobject-class))
@@ -15,6 +14,7 @@
     (setf mcursor (gtb-get-insert tb)
 	  iter0   (gtb-get-start-iter tb)
 	  iter1   (gtb-get-start-iter tb))))
+
 
 ;;------------------------------------------------------------------------------
 ;;
@@ -41,17 +41,20 @@
 ;; This may be a stupid way to do it... TODO: is there a better way?
 ;;
 (defun tb-apply-tag (tb tag start end)
-  "place a tag at characters (start,end]"
+  "Apply a tag at start/end offsets; return T"
 ;;  (format t "START END ~A ~A~&" start end)
   (tb-iters-to-offsets tb start end)
   (with-slots (iter0 iter1) tb
   ;;  (format t "APPLYING ~A ~A~&" (gti-offset iter0) (gti-offset iter1))
-    (gtb-apply-tag tb tag iter0 iter1)))
+    (gtb-apply-tag tb tag iter0 iter1)
+    t))
 
 (defun tb-remove-tag (tb tag start end)
+  "Remove a tag at start/end offsets; return T"
   (tb-iters-to-offsets tb start end)
   (with-slots (iter0 iter1) tb
-    (gtb-remove-tag tb tag iter0 iter1)))
+    (gtb-remove-tag tb tag iter0 iter1))
+  t)
 
 
 (defmacro with-tag (tb tag &rest body)
