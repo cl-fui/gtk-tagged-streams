@@ -57,11 +57,6 @@
 
 
 	
-	(g-signal-connect view "destroy"
-					  (lambda (widget)
-					    (declare (ignore widget))
-			    (leave-gtk-main)))
-	
 	;;========================================================================
 	;; On mouse button click, open an input stream on a tag and print contents
 	(g-signal-connect
@@ -80,7 +75,7 @@
 				 :buffer buffer
 				 :position iter)))
 			   (file-position input :start)
-			   (file-position buffer :end);unclick to end of buffer
+			  
 			   (loop for c = (read-char input nil nil)
 			      while c do (write-char c ))
 			   (close input) ))))
