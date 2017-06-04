@@ -21,5 +21,6 @@
 	       (:file "gtk-assets/tag")
 	       (:file "gtk-assets/tag-in-stream")
 	       (:file "gtk-assets/mark-out-stream")
+	       (:file "gtk-assets/tv")
 
 	       (:file "demo")))

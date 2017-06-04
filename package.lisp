@@ -5,7 +5,7 @@
   (:use :gtk :gdk :gdk-pixbuf :gobject :glib :gio :pango :cairo :cffi
 	#:cl)
   (:export
-   #:text-buffer
+   #:tb #:tv
 
    #:with-tag
 

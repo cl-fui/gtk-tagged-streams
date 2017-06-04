@@ -7,6 +7,7 @@
 
 ;;━┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 (defun demo ()
+  
   (let ((so *standard-output*))
     
     (within-main-loop
@@ -17,13 +18,11 @@
 				    :border-width 3
 				    :default-width 640
 				    :default-height 400))
-	     (buffer (make-instance 'tb))
-	     (view (make-instance 'gtk-text-view :buffer buffer
-				  :wrap-mode :word))
 	     (scrolled (make-instance 'gtk-scrolled-window
 				      :border-width 0
 				      :hscrollbar-policy :automatic
 				      :vscrollbar-policy :always))
+	     (buffer (make-instance 'tb))
 	     (tHead (make-instance 'tag :buffer buffer
 				   :background-rgba (gdk-rgba-parse "#CEDFF2")
 				   :size 20000
@@ -33,11 +32,17 @@
 				   :indent -15
 				   :size 12000
 				   :pixels-above-lines 10))
+	    
 	     (tBoldLink (make-instance 'tag :buffer buffer
 				       :foreground-rgba (gdk-rgba-parse "#0645AD")
 				       :weight 800))
 	     (tLink (make-instance 'tag :buffer buffer
-				   :foreground-rgba (gdk-rgba-parse "#0645AD"))))
+				   :foreground-rgba (gdk-rgba-parse "#0645AD")))
+	      (tKey (make-instance 'tag :buffer buffer
+				   :foreground-rgba (gdk-rgba-parse "#FF0000")))
+	     (view (make-instance 'tv :buffer buffer
+				  :usertag tKey
+				  :wrap-mode :word)))
 	
 	(gtk-container-add scrolled view)
 	(gtk-container-add window scrolled)
@@ -49,6 +54,14 @@
 			  (lambda (widget)
 			    (declare (ignore widget))
 			    (leave-gtk-main)))
+
+
+	
+	(g-signal-connect view "destroy"
+					  (lambda (widget)
+					    (declare (ignore widget))
+			    (leave-gtk-main)))
+	
 	;;========================================================================
 	;; On mouse button click, open an input stream on a tag and print contents
 	(g-signal-connect
@@ -76,6 +89,7 @@
 	;;	(format buffer "Hello, this is some text. ")
 	(populate buffer tHead tBody tLink tBoldLink)
 	
+		
 	(gtk-widget-show-all window)))))
 
 (defun populate (buffer tHead tBody tLink tBoldLink)

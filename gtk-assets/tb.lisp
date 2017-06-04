@@ -3,7 +3,8 @@
 ;;==============================================================================
 ;;
 (defclass tb (gtk-text-buffer tb-output-mixin)
-  ((iter0    :accessor iter0 )	;a very temporary iterator...
+  ((usertag  :accessor usertag :initform nil); user input tagged with this
+   (iter0    :accessor iter0 )	;a very temporary iterator...
    (iter1    :accessor iter1 )	;a very temporary iterator...
    (mcursor   :accessor mcursor)) ;a minor optimization
   (:metaclass gobject-class))
