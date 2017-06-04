@@ -33,7 +33,7 @@
 
 ;;-----------------------------------------------------------------------------
 (defmethod trivial-gray-streams:stream-file-position ((stream tb-output-mixin))
-  (gtb-cursor-position tbo))
+  (gtb-cursor-position stream))
 
 (defmethod (setf trivial-gray-streams:stream-file-position)
     (newval (stream tb-output-mixin))

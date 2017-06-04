@@ -38,7 +38,7 @@ starting with 'old-prefix' in :package.  Remember to capitalize "
   (abbrev-symbols :gtk "GTK-TEXT-TAG-TABLE-" "GTTT-")
   (abbrev-symbols :gtk "%GTK-TEXT-BUFFER-"   "%GTB-"))
 
-(defmacro prog0 (&body body)
+(defmacro prognil (&body body)
   `(progn ,@body nil))
 
 (defmacro progt (&body body)
