@@ -20,7 +20,7 @@ This library uses (and is an extension of) the [ubiquitous cl-cffi-gtk](https://
 (ql:quickload :gtk-tagged-streams)(in-package :gts)
 (demo)
 ```
-Mouse-clicks will create an input stream on the run of text underneath the click, and output it to your *standard-output*.
+Mouse-clicks will create an input stream on the run of text underneath the click, and output it to your `*standard-output*`.
 
 While the demo is open, you can output to the screen using something like `(format *buffer* "hello")` from the REPL.  Or if you want to be fancy, try `(with-tag *buffer* *tHead* (format *buffer* "~&Elephant~&"))`
 
@@ -29,7 +29,9 @@ While the demo is open, you can output to the screen using something like `(form
 
 To use GTK-TAGGED-STREAMS, clone it into your Lisp directory, or use Quicklisp (soon).
 
-Use gts:text-buffer instead of gtk-text-buffer.  The buffer is also a caret output stream; any output will be inserted at the caret.
+Use gts:tb instead of gtk-text-buffer, and gts:tv instead of gtk-text-view.
+
+The buffer is also a caret output stream; any output will be inserted at the caret.
 
 For tagged output, wrap your outputting code like this:
 ```
