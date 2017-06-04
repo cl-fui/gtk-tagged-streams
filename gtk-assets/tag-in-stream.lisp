@@ -3,33 +3,15 @@
 ;; tag-input-stream
 ;;
 ;; Treat the text at cursor, tagged with the specified tag, as an input
-;; stream.  
+;; stream.
+;;
+;; Only a single run is considered to be the entire stream here.  Thus,
+;; position routines are limited.
 
 (defclass tag-in-stream
-    (trivial-gray-streams:fundamental-character-input-stream)
-  ((buffer   :accessor buffer :initarg :buffer)
-   (iter     :accessor iter   :initform nil)
-   (mark     :accessor mark   :initform nil);; preserving position
-   (tag      :accessor tag    :initarg :tag)  ;; ref tag we are filtering on
-))
+    (buffer-tag-stream trivial-gray-streams:fundamental-character-input-stream)
+  ())
 
-;;=============================================================================
-(defmethod close ((stream tag-in-stream) &key abort)
-  (declare (ignore abort))
-  (with-slots (buffer iter mark tag) stream
-    (gtb-delete-mark buffer mark)
-    t))
-;;=============================================================================
-;;
-;;
-(defmethod initialize-instance :after ((stream tag-in-stream)
-				       &key position)
-  (with-slots (buffer iter mark tag) stream
-    (unless (and buffer tag)
-      (error "TAG-IN-STREAM requires a :buffer and a :tag"))
-    ;; Create iter; set mark at current cursor position
-    (setf iter (new-iter-at-position buffer position)
-	  mark   (gtb-create-mark buffer (cffi:null-pointer) iter))))
 
 ;;===========================================================================
 (defmethod trivial-gray-streams:stream-read-char

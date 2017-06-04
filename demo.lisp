@@ -3,6 +3,7 @@
 (defparameter *view* nil)
 
 (defparameter *tHead* nil)
+(defparameter *tLink* nil)
 
 
 ;;━┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
@@ -48,7 +49,8 @@
 	(gtk-container-add window scrolled)
 	(setf *buffer* buffer
 	      *view* view
-	      *tHead* tHead)
+	      *tHead* tHead
+	      *tLink* tLink)
 	
 	(g-signal-connect window "destroy"
 			  (lambda (widget)

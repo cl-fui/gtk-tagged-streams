@@ -56,21 +56,38 @@ When opening streams, the initial position can be expressed in a variety of ways
 - a string naming a mark;
 - nil for the caret position. 
 
-## MARK-OUT-STREAM
+## OUT-STREAM
 
 The built-in caret stream of a text-buffer always outputs at the current caret position, adjusting it after output.  For truly random-position output, use MARK-OUT-STREAM.  It maintains its own mark for tracking output position.  Any number of these may be opened of a text-buffer; don't forget to close!
 
-`(make-instance 'mark-out-stream :buffer buffer :position genpos)`
+`(make-instance 'out-stream :buffer buffer :position genpos)`
+
+## IN-STREAM
+
+This stream is a general-purpose input stream on the buffer
+
+`(make-instance 'in-stream :buffer buffer :position genpos)`
+
 
 ## TAG-IN-STREAM
 
-This stream allows you to treat a tagged run of text as an input stream. 
+This stream allows you to treat a single tagged run of text as an input stream. 
 
 `(make-instance 'tag-in-stream :buffer buffer :tag tag :position genpos)`
 
 If the tag is not active at the position indicated by the :position parameter, an :eof condition will exist at the next read. 
 
 Once open, you may use :start or :end file-position to wind to the beginning or end of the run.
+
+## TAG-ONLY-IN-STREAM
+
+This stream allows you to treat all runs of the tag as a stream.  Any text not tagged will be skipped.
+
+`(make-instance 'tag-only-in-stream :buffer buffer :tag tag :position genpos)`
+
+Normal position semantics apply to file-position.
+
+
 
 ## STATUS
 
