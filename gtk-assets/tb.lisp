@@ -57,17 +57,6 @@
   t)
 
 
-(defmacro with-tag (tb tag &rest body)
-  `(let ((start (gtb-cursor-position ,tb)))
-     (progn ,@body)
-     (tb-apply-tag ,tb ,tag start (gtb-cursor-position ,tb))))
-
-(defmacro without-tag (tb tag &rest body)
-  `(let ((start (gtb-cursor-position ,tb)))
-     (progn ,@body)
-     (tb-remove-tag ,tb ,tag start (gtb-cursor-position ,tb))))
-
-
 (defun tb-cursor-backwards(tb &key count )
   (with-slots (iter0) tb
     (tb-cursor-iter tb)
@@ -75,3 +64,21 @@
 	      (gti-backward-cursor-positions iter0 count)
 	      (gti-backward-cursor-position iter0))
       (gtb-place-cursor tb iter0))))
+
+(defmacro with-buffer (tb &rest body)
+  `(let ((*standard-output* ,tb))
+    ,@body))
+
+
+(defmacro with-tag (tag &rest body)
+  `(let ((start (gtb-cursor-position *standard-output*)))
+     (progn ,@body)
+     (tb-apply-tag *standard-output* ,tag start
+		   (gtb-cursor-position *standard-output*))))
+
+(defmacro without-tag (tag &rest body)
+  `(let ((start (gtb-cursor-position *standard-output*)))
+     (progn ,@body)
+     (tb-remove-tag *standard-output* ,tag start (gtb-cursor-position *standard-output*))))
+
+

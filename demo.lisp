@@ -87,21 +87,16 @@
 	(gtk-widget-show-all window)))))
 
 (defun populate (buffer tHead tBody tLink tBoldLink)
-  (with-tag buffer tHead
-	    (format buffer " In the news ~&"))
-  (with-tag buffer tBody
-	    (format buffer "•  United States President Donald Trump (pictured) announces that the U.S. will ")
-	    (with-tag buffer tBoldLink
-		      (format buffer "withdraw from the Paris Agreement"))
-	    (format buffer " on ")
-	    (with-tag buffer tLink
-		      (format buffer "climate change mitigation"))
-	    (format buffer ".~&")
-	    
-	    (format buffer "•  ")
-	    (with-tag buffer tBoldLink
-		      (format buffer  "A suspected robbery and arson"))
-	    (format buffer " at the ")
-	    (with-tag buffer tLink
-		      (format buffer  "Resorts World Manila"))
-	    (format buffer " complex in the Philippines kills at least 34 people and injures 54 others.~&")))
+  (with-buffer buffer
+    (with-tag tHead (format t " In the news ~&"))
+    (with-tag tBody
+      (format t "•  United States President Donald Trump (pictured) announces that the U.S. will ")
+      (with-tag tBoldLink (format t "withdraw from the Paris Agreement"))
+      (format t" on ")
+	      (with-tag tLink (format t "climate change mitigation"))
+	      (format t ".~&")
+	      (format t "•  ")
+	      (with-tag tBoldLink (format t "A suspected robbery and arson"))
+	      (format t " at the ")
+	      (with-tag tLink (format t "Resorts World Manila"))
+	      (format t " complex in the Philippines kills at least 34 people and injures 54 others.~&"))))
