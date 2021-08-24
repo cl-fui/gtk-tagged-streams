@@ -1,5 +1,7 @@
 # GTK-TAGGED-STREAMS
 
+Another GTK experiment in the spirit of SUBTEXT - binding runs of text with Lisp for visual and behavioural characteristics.  Many CL-CFFI-GTK memory leaks uncovered...
+
 GTK-TAGGED-STREAMS is a minimalistic library that beefs up gtk-text-buffer with an output stream.  Tagged runs of text can now be printed using a simple (with-tag ..) macro and your favorite Lisp printing function.
 
 It further lets you open tagged texts as streams, for reasonably easy input.
